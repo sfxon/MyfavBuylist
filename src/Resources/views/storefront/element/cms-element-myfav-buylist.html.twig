@@ -1,0 +1,69 @@
+{% block myfav_buylist_detail %}
+    {% if page.extensions.buylistProducts is defined and page.extensions.buylistProducts|length > 0 %}
+        <div class="myfav-buylist" myfav-buylist-plugin="true">
+            {# Load all image urls (for speed reasons). #}
+            {% set coverMediaIds = [] %}
+
+            {% for product in page.extensions.buylistProducts %}
+                {% set coverMediaId = product.cover.mediaId %}
+
+                {% if coverMediaId is not null %}
+                    {% set coverMediaIds = coverMediaIds|merge([coverMediaId]) %}
+                {% endif %}
+            {% endfor %}
+
+            {# Do a single media fetch from the database. #}
+            {% set coverMediaCollection = searchMedia(coverMediaIds, context.context) %}
+
+            <div class="products-container">
+                <div class="myfav-buylist-title">{{ 'myfav-buylist.heading'|trans }}</div>
+                <div class="configurable-sum"><span class="chosen">0</span><span>/</span><span>{{ page.extensions.buylistProductCount.get('count') }}</span>&nbsp;gewählt</div>
+                <input type="hidden" id="myfav-buylist-max-items" value="{{ page.extensions.buylistProductCount.get('count') }}" />
+                <input type="hidden" id="myfav-buylist-main-product-id" value="{{ page.product.id }}" />
+                <div class="row">
+                    {% for product in page.extensions.buylistProducts %}
+                        {% if product.extensions.buylist.get('stock') > 0 %}
+                            {% set currentCoverMedia = coverMediaCollection.get(product.cover.mediaId) %}
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="configurable-group-entry row form-row">
+                                    <div class="col col-auto">
+                                        <img src="{{ currentCoverMedia.url }}" title="{{ product.translated.name|escape }}" alt="{{ product.translated.name|escape }}">
+                                    </div>
+                                    <div class="align-self-center col col-group-el-name"><span>{{ product.translated.name|escape }}</span></div>
+                                    <div class="align-self-center col-auto col-group-el-quantity">
+                                        <div class="js--fancy-select select-field custom-select">
+                                            <select 
+                                                class="custom-select form-select js-quantity-selector" 
+                                                data-attr-product-id="{{ product.id }}"
+                                                data-attr-product-number="{{ product.productNumber|escape }}"
+                                                data-attr-product-name="{{ product.translated.name|escape }}"
+                                                autocomplete="off"
+                                            >
+                                                <option value="0">-</option>
+
+                                                {% set maxBuyableProducts = product.extensions.buylist.get('stock') %}
+
+                                                {% if
+                                                    product.customFields.eubos_article_buylist_article_count_to_choose &&
+                                                    product.customFields.eubos_article_buylist_article_count_to_choose|trim != "" &&
+                                                    product.customFields.eubos_article_buylist_article_count_to_choose|trim matches '/^\\d+$/'
+                                                %}
+                                                    {% set maxBuyableProducts = (product.customFields.eubos_article_buylist_article_count_to_choose|trim) %}
+                                                {% endif %}
+
+                                                {% for i in range(1, maxBuyableProducts) %}
+                                                    <option value="{{ i }}">{{ i }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="configurable-sum"><span class="chosen">0</span><span>/</span><span>{{ page.extensions.buylistProductCount.get('count') }}</span>&nbsp;{{ 'myfav-buylist.textChosen'|trans }}</div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

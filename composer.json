@@ -1,0 +1,35 @@
+{
+    "name": "myfav/buylist",
+    "version": "1.0.0",
+    "description": "Buylist",
+    "type": "shopware-platform-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steve Krämer, Mindfav Software",
+            "homepage": "https://www.mindfav.com"
+        }
+    ],
+    "require": {
+        "shopware/core": "~6.6",
+        "shopware/administration": "~6.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Myfav\\Buylist\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "Myfav\\Buylist\\MyfavBuylist",
+        "plugin-icon": "plugin.png",
+        "copyright": "(c) by Mindfav",
+        "label": {
+            "de-DE": "Kaufliste mit Artikel-Auswahl",
+            "en-GB": "Buylist with Article-Selection"
+        },
+        "description": {
+            "en-GB": "Allows your customers to select from a defined number of additional items on the item details page and add them to the shopping cart.",
+            "de-DE": "Erlaubt es deinen Kunden, auf der Artikel-Detail Seite aus einer definierten Menge von weiteren Artikeln auszuwählen, und diese gemeinsam in den Warenkorb zu legen."
+        }
+    }
+}

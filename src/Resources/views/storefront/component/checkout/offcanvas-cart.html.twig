@@ -1,0 +1,33 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-cart.html.twig' %}
+
+{% block component_offcanvas_cart_flashbags %}
+    {{ parent() }}
+
+    {% if page.cart.extensions.myfavBuylist is defined && page.cart.extensions.myfavBuylist.get('hasOverbookedErrors') === true %}
+        <div role="alert" class="alert alert-danger alert-has-icon">
+            {% sw_icon 'blocked' %}
+            <div class="alert-content-container">
+                <div class="alert-content">
+                    {{ 'myfav-buylist.errorOverbookedGeneral'|trans }}
+                    <br /><br />
+                    {% for tmpEntry in page.cart.extensions.myfavBuylist.get('quantityValidation') %}
+                        {% if tmpEntry.error == 'overbooked' %}
+                            <li><b>{{ tmpEntry.realCount }} x {{ tmpEntry.productName }}</b><br />({{ 'myfav-buylist.maxQuantityTextCheckout'|trans }}: {{ tmpEntry.availableStock }})<br /></li>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if page.cart.extensions.myfavBuylist is defined && page.cart.extensions.myfavBuylist.get('hasQuantityErrors') === true %}
+        <div role="alert" class="alert alert-danger alert-has-icon">
+            {% sw_icon 'blocked' %}
+            <div class="alert-content-container">
+                <div class="alert-content">
+                    {{ 'myfav-buylist.errorOverbookedProductLineItem'|trans }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

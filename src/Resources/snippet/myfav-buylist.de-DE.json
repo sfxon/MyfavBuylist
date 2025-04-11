@@ -1,0 +1,10 @@
+{
+    "myfav-buylist": {
+        "configure-group-first": "Wähle zuerst unten deine gewünschten Artikel aus.",
+        "errorOverbookedGeneral": "ACHTUNG: Folgende Artikel liegen in zu hoher Stückzahl in deinem Warenkorb. Die Artikel könnten Teil von Sparpaketen sein. Um den Kauf abschließen zu können, musst du die Stückzahl reduzieren oder das Paket neu konfigurieren.",
+        "errorOverbookedProductLineItem": "ACHTUNG: Der Warenkorb enthält Artikel, die nicht mehr verfügbar sind. Die Artikel wurden rot markiert. Bitte beachte, dass die Artikel Teil von Paketen sein können. Konfiguriere die Pakete neu, um den Kauf abschließen zu können.",
+        "heading": "Wähle die Artikel, die du dem Set hinzufügen möchtest:",
+        "maxQuantityTextCheckout": "Maximal verfügbar",
+        "textChosen": "ausgewählt"
+    }
+}

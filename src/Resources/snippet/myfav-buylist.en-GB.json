@@ -1,0 +1,10 @@
+{
+    "myfav-buylist": {
+        "configure-group-first": "First, choose your desired articles below.",
+        "errorOverbookedGeneral": "ATTENTION: The following items are in your shopping cart in excessive quantities. These items may be part of value packs. To complete the purchase, you must reduce the quantity or reconfigure the pack.",
+        "errorOverbookedProductLineItem": "ATTENTION: Your shopping cart contains items that are no longer available. These items have been marked in red. Please note that these items may be part of bundles. Reconfigure the bundles to complete your purchase.",
+        "heading": "Choose the articles, that you want to add to the set:",
+        "maxQuantityTextCheckout": "Maximal verfügbar",
+        "textChosen": "chosen"
+    }
+}

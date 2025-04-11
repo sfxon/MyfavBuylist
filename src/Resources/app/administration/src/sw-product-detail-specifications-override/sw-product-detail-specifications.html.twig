@@ -1,0 +1,32 @@
+{% block sw_product_detail_specifications_custom_products %}
+    {{ parent }}
+
+    <sw-card
+        class="sw-product-detail-specification__myfav-buylist"
+        position-identifier="sw-product-detail-specifications-myfav-buylist"
+        :title="$tc('myfav-buylist.product-detail.title')"
+    >
+        <div class="sw-container" style="grid-template-columns: 2fr 1fr; gap: 0px 30px; place-items: stretch;">
+            <div class="sw-inherit-wrapper">
+                <sw-entity-single-select
+                    v-model:value="myfavBuylistCurrentSelectedProduct"
+                    entity="product"
+                    :label="$tc('myfav-buylist.product-detail.addProductLabel')"
+                ></sw-entity-single-select>
+            </div>
+            <div class="sw-inherit-wrapper" style="align-content: center;">
+                <sw-button @click="onAddProductButtonClicked">{{ $tc('myfav-buylist.product-detail.buttonAdd') }}</sw-button>
+            </div>
+        </div>
+
+        <b>Aktuell ausgewählte Artikel:</b><br />
+        <div v-for="(tmpProd, tmpIndex) in myfavCurrentBuylistProducts" style="margin-top: 12px;">
+            <div>
+                <span>{{ tmpProd.productNumber }}</span>
+                <span v-if="tmpProd.name != ''"> | {{ tmpProd.name }}</span>
+                <span v-if="tmpProd.options != ''">({{ tmpProd.options }})</span>
+                <span class="removeGroup"><sw-icon style="color: red; cursor: pointer;" name="regular-times-xxs" size="12" @click="onRemoveGroup(tmpProd.productNumber)" /></span>
+            </div>
+        </div>
+    </sw-card>
+{% endblock %}

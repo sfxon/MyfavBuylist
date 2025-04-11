@@ -1,0 +1,9 @@
+{% sw_extends '@Plugin/storefront/component/buy-widget/buy-widget.html.twig' %}
+
+{% block buy_widget_configurator_include %}
+    {{ parent() }}
+
+    {% if page.extensions.buylistProducts is defined and page.extensions.buylistProducts|length > 0 %}
+        <div id="myfav-buylist-info-message"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;{{ 'myfav-buylist.configure-group-first'|trans }}</div>
+    {% endif %}
+{% endblock %}

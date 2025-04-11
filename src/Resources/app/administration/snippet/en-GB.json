@@ -1,0 +1,11 @@
+{
+    "myfav-buylist": {
+        "elements": {
+            "component": {
+                "elementHeadline": "Mindfav Buylist",
+                "infoText": "An dieser Stelle wird die Buylist dargestellt",
+                "labelProductSelection": "Artikel auswählen"
+            }
+        }
+    }
+}

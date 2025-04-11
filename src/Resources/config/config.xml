@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Artikel-Einstellungen</title>
+        <input-field type="text">
+            <name>articleDetailCustomFieldForArticles</name>
+            <label>Technischer Name des Freitextfelds, in dem die Artikeldaten getrennt durch ein | (Pipe) Symbol hinterlegt sind.</label>
+            <defaultValue></defaultValue>
+        </input-field>
+
+        <input-field type="text">
+            <name>articleDetailCustomFieldForArticleCountToChoose</name>
+            <label>Anzahl an Artikeln, die der Kunde wählen kann/soll.</label>
+            <defaultValue></defaultValue>
+        </input-field>
+    </card>
+</config>

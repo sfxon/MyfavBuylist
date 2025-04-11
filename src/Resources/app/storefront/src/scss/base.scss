@@ -1,0 +1,51 @@
+.myfav-buylist {
+    .myfav-buylist-title {
+        line-height: 1.625rem;
+        margin: 12px 0 0;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #0070c0;
+    }
+
+    .configurable-group-entry {
+        margin-bottom: 24px;
+
+        img {
+            border-radius: 120px;
+            height: 120px;
+            width: 120px;
+        }
+
+        .col-group-el-name,
+        .col-group-el-quantity {
+            padding-left: 0;
+        }
+    }
+
+    .configurable-sum {
+        padding: 2px 5px 2px 5px;
+        display: inline-block;
+        border: 1px solid #bcc1c7;
+        margin-bottom: 10px;
+        margin-top: 10px;
+
+        span {
+            font-weight: bold;
+        }
+    }
+
+    .configurable-sum.tooMuch {
+        color: #e74c3c;
+    }
+
+    .configurable-sum.equal {
+        background-color: #def2e7;
+        color: #2ecc71;
+    }
+}
+
+#myfav-buylist-info-message {
+    background-color: #fbf5db;
+    color: #ae8e0a;
+    padding: .625rem .625rem .625rem .625rem;
+}

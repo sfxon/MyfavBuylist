@@ -1,0 +1,28 @@
+.myfav-buylist-cms-el {
+    width: 100%;
+    border: 1px solid #dadee5;
+    border-radius: 4px;
+    background: #FFF;
+    padding: 10px;
+
+    .myfav-buylist-cms-el-placeholder div {
+        margin: 15px 30px;
+        height: 1.5em;
+        border-radius: 4px;
+        background-color: #111;
+
+        &.myfav-buylist-cms-el-cms-el-placeholder {
+            margin: 15px 30px 15px 70px;
+        }
+    }
+
+    hr {
+        max-width: 90%;
+        margin: 10px auto;
+        border: 1px solid #333;
+    }
+
+    h2 {
+        margin: 10px;
+    }
+}

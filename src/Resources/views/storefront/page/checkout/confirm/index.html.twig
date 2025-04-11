@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% block page_checkout_aside_actions %}
+    {% if 
+        page.cart.extensions.myfavBuylist.get('hasOverbookedErrors') === true ||
+        page.cart.extensions.myfavBuylist.get('hasQuantityErrors') === true
+     %}
+        <div style="color: red;">
+            Es befinden sich fehlerhafte Positionen im Warenkorb. Bitte prüfen Sie die einzelnen Positionen.
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

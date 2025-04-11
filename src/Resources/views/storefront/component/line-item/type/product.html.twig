@@ -1,0 +1,78 @@
+{% sw_extends '@Storefront/storefront/component/line-item/type/product.html.twig' %}
+
+{% block component_line_item_type_product_label %}
+    {{ parent() }}
+
+    {% if lineItem.payload.childNames is defined %}
+        <div class="myfav-buylist-product-info">
+            <b>Ausgewählte Optionen:</b>
+            {{ lineItem.payload.childNames }}
+
+            {% if page.cart.extensions.myfavBuylist.get('hasOverbookedErrors') === true %}
+                {% set printedMainError = false %}
+                
+                {% for tmpEntry in page.cart.extensions.myfavBuylist.get('quantityValidation') %}
+                    {% if tmpEntry.error === 'overbooked' %}
+                        {% if tmpEntry.productId in lineItem.payload.childEntries %}
+                            {% if printedMainError === false %}
+                                {% set printedMainError = true %}
+                                <div style="color: #e52427; text-decoration: underline; margin-top: 6px;">
+                                    Gewählte Stückzahl ist zu hoch:
+                                </div>
+                            {% endif %}
+                            <div style="color: #e52427;">
+                                <b>{{ tmpEntry.realCount }} x {{ tmpEntry.productName }}</b><br />(Maximal verfügbar: {{ tmpEntry.availableStock }})
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% if page.cart.extensions.myfavBuylist.get('hasQuantityErrors') === true %}
+                {% set printedMainError = false %}
+                
+                {% for tmpEntry in page.cart.extensions.myfavBuylist.get('quantityValidation') %}
+                    {% if tmpEntry.error === 'productNotFound' %}
+                        {% if tmpEntry.productId in lineItem.payload.childEntries %}
+                            {% if printedMainError === false %}
+                                {% set printedMainError = true %}
+                                <div style="color: #e52427; text-decoration: underline; margin-top: 6px;">
+                                    Einer oder mehrere der gewählten Optionen sind nicht länger verfügbar. Bitte wählen Sie neue Optionen.
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% else %}
+        {# Normale Artikel markieren. #}
+        {% if page.cart.extensions.myfavBuylist.get('hasOverbookedErrors') === true %}
+            {% for tmpEntry in page.cart.extensions.myfavBuylist.get('quantityValidation') %}
+                {% if tmpEntry.error === 'overbooked' %}
+                    {% if tmpEntry.productId == lineItem.referencedId %}
+                        <div style="color: #e52427; text-decoration: underline; margin-top: 6px;">
+                            Gewählte Stückzahl ist zu hoch:
+                        </div>
+
+                        <div style="color: #e52427;">
+                        <b>{{ tmpEntry.realCount }} x im Warenkorb</b><br />(Maximal verfügbar: {{ tmpEntry.availableStock }})
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if page.cart.extensions.myfavBuylist.get('hasQuantityErrors') === true %}
+                {% for tmpEntry in page.cart.extensions.myfavBuylist.get('quantityValidation') %}
+                    {% if tmpEntry.error === 'productNotFound' %}
+                        {% if tmpEntry.productId == lineItem.referencedId %}
+                            <div style="color: #e52427; text-decoration: underline; margin-top: 6px;">
+                                Einer oder mehrere der gewählten Optionen sind nicht länger verfügbar. Bitte wählen Sie neue Optionen.
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+    {% endif %}
+{% endblock %}
